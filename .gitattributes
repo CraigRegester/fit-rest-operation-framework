@@ -1,0 +1,15 @@
+*.cls linguist-language=ObjectScript
+*.mac linguist-language=ObjectScript
+*.int linguist-language=ObjectScript
+*.inc linguist-language=ObjectScript
+*.rou linguist-language=ObjectScript
+*.csp linguist-language=Html
+
+*.sh text eol=lf
+*.cls text eol=lf
+*.mac text eol=lf
+*.int text eol=lf
+Dockerfil* text eol=lf
+
+# Auto detect text files and perform LF normalization
+* text=auto
