@@ -63,9 +63,21 @@ Using VS Code w/ ObjectScript Extension or InterSystems Studio, import and compi
 
 Open the [DemoProduction](https://github.com/CraigRegester/fit-rest-operation-framework/blob/main/src/cls/FITLIB/REST/DemoProduction.cls) in the Interoperability module under the namespace which you imported the code and utilizing the Test framework on the [REST.NPPES.Operation](https://github.com/CraigRegester/fit-rest-operation-framework/blob/main/src/cls/FITLIB/REST/NPPES/Operations.cls), search for a list of providers in Postal Code 02142.
 
+![image](https://user-images.githubusercontent.com/65192819/170906891-29405ac1-8922-4d75-8113-4b7e1fb8491a.png)
+
+![image](https://user-images.githubusercontent.com/65192819/170906960-8fb6dba0-e4bc-463f-939f-e331e9f746ea.png)
+
 View the Visual Trace created to see the results, including one of the key highlights of the framework: the ability to visualize the request and response in a formatted JSON trace directly within the Interoperability Message Trace!
 
+![image](https://user-images.githubusercontent.com/65192819/170907069-85d47cf7-1cdc-4409-8014-ba195f4a4526.png)
+
+![image](https://user-images.githubusercontent.com/65192819/170907138-af57bf4c-8ef5-4805-8e6f-521699c4c1ae.png)
+
 Additionally, to see the included REST.FunctionService in action, view the sample [DTL](https://github.com/CraigRegester/fit-rest-operation-framework/blob/main/src/cls/FITLIB/DTL/FITRestNpiDemo.cls) and [Utils](https://github.com/CraigRegester/fit-rest-operation-framework/blob/main/src/cls/FITLIB/Utils/Interop.cls) class.
+
+![image](https://user-images.githubusercontent.com/65192819/170907215-584d464b-03f3-427c-a2de-24e8e1abe823.png)
+
+![image](https://user-images.githubusercontent.com/65192819/170907258-825b6b8e-6a76-4d65-89e3-9e92651e28c9.png)
 
 ## Support and Guidance
 
