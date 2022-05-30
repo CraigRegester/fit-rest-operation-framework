@@ -14,21 +14,10 @@ Property RESTPatientID As %String(COLLATION = "EXACT");
 Index RESTPatientID On RESTPatientID [ Type = bitmap ];
 
 /// Callback invoked by the Message Viewer UI
-ClassMethod OnProcessCondition(
-	pProperty As %String,
-	pOperator As %String,
-	pValue As %String,
-	pTableName As %String,
-	pTableInFrom As %Boolean,
-	pSelectAsName As %String,
-	pDisplayOnly As %Boolean = 0,
-	ByRef pSelect As %String,
-	ByRef pFrom As %String,
-	ByRef pWhere As %String,
-	ByRef pSQLFetch As %Boolean) As %Status
+ClassMethod OnProcessCondition(pProperty As %String, pOperator As %String, pValue As %String, pTableName As %String, pTableInFrom As %Boolean, pSelectAsName As %String, pDisplayOnly As %Boolean = 0, ByRef pSelect As %String, ByRef pFrom As %String, ByRef pWhere As %String, ByRef pSQLFetch As %Boolean) As %Status
 {
 	If 'pTableInFrom {
-		Set pFrom = pFrom _ $select(pFrom = "": "", 1: ", ") _ pTableName
+		Set pFrom = pFrom _ $SELECT(pFrom = "": "", 1: ", ") _ pTableName
 	}
 	Set pSQLFetch = 1
 	Set pSelect = pTableName_".RESTPatientID As RESTPatientID"
@@ -38,9 +27,7 @@ ClassMethod OnProcessCondition(
 	Quit $$$OK
 }
 
-ClassMethod OnIndexDoc(
-	pDocObj As Ens.Request,
-  pSearchTable As FITLIB.REST.SearchTable) As %Status
+ClassMethod OnIndexDoc(pDocObj As Ens.Request, pSearchTable As FITLIB.REST.SearchTable) As %Status
 {
 	Set pSearchTable.RESTPatientID = pDocObj.GetRESTPatientID()
 	Quit $$$OK
@@ -48,8 +35,8 @@ ClassMethod OnIndexDoc(
 
 ClassMethod BuildIndexHelper(pObjectName As %String) As %Status
 {
-	S tTotalMsgs = "UNKNOWN"
-	W !,"Preparing to Build Search Table Index for: "_pObjectName,!
+	Set tTotalMsgs = "UNKNOWN"
+	Write !,"Preparing to Build Search Table Index for: "_pObjectName,!
 
 	&sql(
 	DECLARE MsgCursor CURSOR FOR
@@ -61,15 +48,36 @@ ClassMethod BuildIndexHelper(pObjectName As %String) As %Status
 	
 	&sql(OPEN MsgCursor)
 	
-	FOR { &sql(FETCH MsgCursor)
-		Q:SQLCODE=100
-		W !,"Msg ID: "_msgBodyId
-    S tSC = ##class(FITLIB.REST.SearchTable).BuildIndex(msgBodyId,msgBodyId)
+	For { &sql(FETCH MsgCursor)
+		Quit:SQLCODE=100
+		Write !,"Msg ID: "_msgBodyId
+    Set tSC = ##class(FITLIB.REST.SearchTable).BuildIndex(msgBodyId,msgBodyId)
 	}
 	
 	&sql(CLOSE MsgCursor)
 	
-  W !,"Finished indexing "_tTotalMsgs_" messages for "_pObjectName_" into FITLIB.REST.SearchTable.",!
+  Write !,"Finished indexing "_tTotalMsgs_" messages for "_pObjectName_" into FITLIB.REST.SearchTable.",!
+}
+
+Storage Default
+{
+<Data name="SearchTableDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>DocId</Value>
+</Value>
+<Value name="3">
+<Value>RESTPatientID</Value>
+</Value>
+</Data>
+<DataLocation>^FITLIB.REST.SearchTableD</DataLocation>
+<DefaultData>SearchTableDefaultData</DefaultData>
+<IdLocation>^FITLIB.REST.SearchTableD</IdLocation>
+<IndexLocation>^FITLIB.REST.SearchTableI</IndexLocation>
+<StreamLocation>^FITLIB.REST.SearchTableS</StreamLocation>
+<Type>%Storage.Persistent</Type>
 }
 
 }

@@ -11,6 +11,8 @@ Property NameMiddle As %String(%JSONFIELDNAME = "middle_name", MAXLEN = "");
 
 Property NameLast As %String(%JSONFIELDNAME = "last_name", MAXLEN = "");
 
+Property Prefix As %String(%JSONFIELDNAME = "prefix", MAXLEN = "");
+
 Property Type As %String(%JSONFIELDNAME = "type", MAXLEN = "");
 
 Property OrganizationName As %String(%JSONFIELDNAME = "organization_name", MAXLEN = "");
@@ -34,9 +36,12 @@ Storage Default
 <Value>NameLast</Value>
 </Value>
 <Value name="6">
-<Value>Type</Value>
+<Value>Prefix</Value>
 </Value>
 <Value name="7">
+<Value>Type</Value>
+</Value>
+<Value name="8">
 <Value>OrganizationName</Value>
 </Value>
 </Data>

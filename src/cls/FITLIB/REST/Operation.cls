@@ -11,38 +11,6 @@
 
 Include FIT
 
-/// <p>The FIT REST Operation Framework is an extension intended primarily for use inside an Interoperability
-/// Production of the IRIS, IRIS for Health or HealthShare/Health Connect platforms.
-/// 
-/// <p>Utilizing the standard <class>EnsLib.HTTP.OutboundAdapter</class>, this Busines Operation component
-/// is intended to be extended by custom vendor-specific REST Operation classes pertinent to an organizations
-/// Interoperability workflows that engage outside vendors serving REST API endpoints.
-/// 
-/// <p>For example, included in this package is a fully-working sample Operation for NPPES - an open endpoint service
-/// provided by the United States Centers for Medicare & Medicaid Services government agency.
-/// 
-/// <p>While this extension is somewhat derivative as everything it does can be done with the tools provided by
-/// InterSystems Interoperability out of the box, its primary purpose is to drastically shortern the development
-/// timeframe for an Interopability team and create a common code base that ensures a consistent pattern is followed
-/// with each REST API Endpoint vendor configured - reducing code sprawl and drastic variation that makes it difficult
-/// for one engineer to support anothers' REST Operation.
-/// 
-/// <p>Furthermore, Interoperability Analysts at an organization now have the ability to see in the Interoperability
-/// Production UX almost the complete configuration for a REST API integration at a glance, no longer relying on
-/// their ability to find and read through custom-coded ObjectScript classes.
-/// 
-/// <p>Finally the FIT REST FunctionService and Trace Operation, included in this package as well, provide those same
-/// analysts (and engineers!) the valuable capability to see a FORMATTED representation of the JSON request and
-/// JSON response to/from the vendor's endpoint, drastically reducing the confusion caused by relying on the
-/// IRIS Interoperability Message Trace to only display the request in a XML encoded format.
-/// 
-/// Example Method of a custom vendor-specific REST Operation class extending this class:
-///     Method GetNPIData(pRequest As FITLIB.REST.NPPES.Msgs.GetNPIDataRequest, Output pResponse As FITLIB.REST.NPPES.Msgs.GetNPIDataResponse) As %Library.Status
-///     {
-///         Set tSC = ..Initialize("GET",,.pRequest)
-/// 	        Quit ..SubmitRequest(.pResponse)
-///     }
-/// 
 Class FITLIB.REST.Operation Extends (FITLIB.Utils.Trace.Helper, Ens.BusinessOperation, Ens.Util.JSON) [ Abstract ]
 {
 
@@ -550,8 +518,13 @@ Method HandleJSONResponse(ByRef pResponse As Ens.Response) As %Library.Status [ 
 }
 
 /// SetRequestSearchTableIndex
-/// Helper Method to Index REST Request Message Objects into a Search Table for inclusion on
-/// Disclosure Reporting in particular.
+/// Helper Method to Index REST Request Message Objects into a Search Table.
+/// To use, the Request or Response object must have a Method of this nature:
+/// Method GetRESTPatientID() As %String
+/// {
+///     // Quit this method with a reference to property containing the patient ID.
+///     Quit ..CustomPatientIDPropertyName
+/// }
 Method SetRequestSearchTableIndex() As %Library.Status [ Internal, Private ]
 {
 	Set tSC = $$$OK
