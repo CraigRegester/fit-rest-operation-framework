@@ -1,0 +1,15 @@
+    // Unexpire passwords to simplify dev mode. Comment these two lines for Production use
+    zn "%SYS"
+    Do ##class(Security.Users).UnExpireUserPasswords("*")
+
+    // create FITLIB namespace
+    do $SYSTEM.OBJ.Load("/home/irisowner/irisbuild/Installer.cls", "ck") 
+    set sc = ##class(App.Installer).setup() 
+
+    sslClient="DefaultSSLClient"
+    do:'##class(Security.SSLConfigs).Exists(sslClient) ##class(Security.SSLConfigs).Create(sslClient)
+
+    // load all the code of the project as a ZPM package
+    zn "FITLIB"
+    zpm "load /home/irisowner/irisbuild/ -v":1:1
+    halt
