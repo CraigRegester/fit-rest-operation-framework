@@ -1,7 +1,20 @@
 {
+    "files.associations": {
+        "Dockerfile*": "dockerfile",
+        "iris.script": "objectscript"
+    },
     "objectscript.conn": {
-        "server": "dbsi4h",
-        "ns": "FITLIB",
-        "active": true
+        "active": true,
+        "ns": "USER",
+        "username": "SuperUser",
+        "password": "SYS",
+        "docker-compose": {
+            "service": "iris",
+            "internalPort": 52773
+        },
+        "links": {
+            "UnitTest Portal": "${serverUrl}/csp/sys/%25UnitTest.Portal.Home.cls?$NAMESPACE=FITLIB",
+            "Production": "${serverUrl}/csp/fitlib/EnsPortal.ProductionConfig.zen?PRODUCTION=FITLIB.REST.DemoProduction"
+        }
     }
 }
