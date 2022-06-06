@@ -4,5 +4,23 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"objectscript.autoShowTerminal": true,
+		"objectscript.explorer.alwaysShowServerCopy": true,
+		"objectscript.export": {
+			"folder": "src",
+			"addCategory": true,
+			"map": {},
+			"atelier": true,
+			"generated": false,
+			"filter": "",
+			"exactFilter": "",
+			"category": "*",
+			"noStorage": false,
+			"dontExportIfNoChanges": false,
+			"maxConcurrentConnections": 0,
+			"mapped": true
+		},
+		"objectscript.multilineMethodArgs": true
+	}
 }
