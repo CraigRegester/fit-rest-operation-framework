@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+    <Document name="fitlib-rest-framework.ZPM">
+        <Module>
+            <Name>fitlib-rest-framework</Name>
+            <Version>1.1.0</Version>
+            <Description>The Fantastic IRIS Toolbox (FITLIB) REST Operation Framework</Description>
+            <Keywords>rest operation interoperability api quickstart json</Keywords>
+            <Author>
+                <Person>Craig Regester</Person>
+                <Organization>db Studio</Organization>
+                <CopyrightDate>2022</CopyrightDate>
+                <License>MIT</License>
+                <Notes>Creative Solutions by Design - media.dbstudio.io</Notes>
+            </Author>
+            <Packaging>module</Packaging>
+            <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
+            <SourcesRoot>src</SourcesRoot>
+            <Resource Name="FIT.INC"/>
+            <Resource Name="FITTraceHelper.INC"/>
+            <Resource Name="FITLIB.PKG"/>
+        </Module>    
+    </Document>
+</Export>
